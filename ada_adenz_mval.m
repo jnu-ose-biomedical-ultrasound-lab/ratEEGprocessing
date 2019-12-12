@@ -60,7 +60,7 @@ mod_test=testp;
 dispstr=sprintf('Running validation subject %s through model %s', num2str(vv), num2str(train_sub(uu)));
         disp(dispstr);
 traininglabel=traininglabel';
-[clas_err,outprobs]=stacking_ldam_default_classify(mod_test,reduced_features,traininglabel');
+[clas_err,outprobs]=prototype_adaboosting_classify(mod_test,reduced_features,traininglabel',100);
 %[ypre,clas_err]=stacking_ldam_default_classify(mod_test,reduced_features,traininglabel');
 altout = clas_err*(1/(subs-1));
 AA = [AA altout];

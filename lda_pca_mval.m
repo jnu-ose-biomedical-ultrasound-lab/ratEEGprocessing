@@ -1,28 +1,26 @@
-function [mean_measures,mean_phi,mean_phiclassic,mean_aucroc,mean_accuracy,mean_sensitivity,mean_specificity,mean_acc2,mean_ppv,mean_npv,mean_f1,mean_kappa,mean_itr]=lda_adenz_mval(subs,features,labels,pvalue)
+function [mean_measures,mean_phi,mean_phiclassic,mean_aucroc,mean_accuracy,mean_sensitivity,mean_specificity,mean_acc2,mean_ppv,mean_npv,mean_f1,mean_kappa,mean_itr]=lda_pca_mval(subs,features,labels,pvalue)
 
 %--------------------------------------------------------------------------
- % LDA_ADENZ_MVAL
+ % LDA_PCA_MVAL
 
- % Last updated: Oct 2014, J. LaRocco
+ % Last updated: May 2014, J. LaRocco
 
- % Details: Single classifier with ADENZ for feature reduction and LDA for pattern recognition, done like Malik did. 
+ % Details: Single classifier with PCA for feature reduction and LDA for pattern recognition, done like Malik did. 
 
- % Usage: [mean_measures,mean_phi,mean_phiclassic,mean_accuracy,mean_sensitivity,mean_specificity,mean_acc_sns,mean_acc2,mean_ppv,mean_npv,mean_f1,mean_kappa]=lda_adenz_mval(subs,features,labels,pvalue)
+ % Usage: [mean_measures,mean_phi,mean_phiclassic,mean_accuracy,mean_sensitivity,mean_specificity,mean_acc_sns,mean_acc2,mean_ppv,mean_npv,mean_f1,mean_kappa]=lda_pca_mval(subs,features,labels,pvalue)
 
  % Input: 
  %  subs: Number of subjects.  
- %  features: cell-based struct of features. 
+ %  features: cell-based struct of featores. 
  %  labels: cell-based struct of targets. 
   %  pvalue: features to reduce to. 
 
- 
- 
  % Output: 
  %  mean_measures: output matrix of all averaged metrics
     % 1st row is mean phi
     % 2st row is mean phi by other means
     % 3rd row is mean accuracy
-    % 4th row is mean sensitivity
+    % 4th row is mean sensitivityo
     % 5th row is mean specificity
     % 6th row is mean accuracy (mean of sensitivity and specificity)
     % 7th row is mean accuracy (calculated in different way than 3rd row, should be the same as value in 3rd row)
@@ -30,7 +28,7 @@ function [mean_measures,mean_phi,mean_phiclassic,mean_aucroc,mean_accuracy,mean_
     % 9th row is mean npv
     % 10th row is f1, with beta=2
     % 11th row is Cohen's kappa
-    % 12th row is information transfer rate (bits/trial)    
+    % 12th row is information transfer rate (bits/min)
 %--------------------------------------------------------------------------
 
 mean_measures=[]; 
@@ -39,31 +37,28 @@ a=1:subs;
 for vv=1:subs
 test_sub=vv; 
 testing_data=squeeze(features{test_sub});
-
 testing_label=labels{test_sub}'; 
-
 arrays1=a;
 arrays1(arrays1==vv) = [];
-
 train_sub=arrays1;
 num_subs=length(train_sub);
-
 AA = [];
 tic;
 for uu=1:num_subs;
 trainingdata=squeeze(features{train_sub(uu)});
 traininglabel=labels{train_sub(uu)}';
-[w_mad,a_mad,trainp,testp]=feature_selection_adenz(trainingdata,traininglabel',testing_data,pvalue);
+[pcs,newf,var_exp,newf2,tot_var_explained,N2]=feature_selection_pca_alt(trainingdata',testing_data',pvalue);
+reduced_features=newf2;
+mod_test=N2;
 
-reduced_features=trainp;
-mod_test=testp;
 dispstr=sprintf('Running validation subject %s through model %s', num2str(vv), num2str(train_sub(uu)));
         disp(dispstr);
 traininglabel=traininglabel';
-[clas_err,outprobs]=stacking_ldam_default_classify(mod_test,reduced_features,traininglabel');
-%[ypre,clas_err]=stacking_ldam_default_classify(mod_test,reduced_features,traininglabel');
+
+[ypre,clas_err]=stacking_ldam_default_classify(mod_test,reduced_features,traininglabel');
 altout = clas_err*(1/(subs-1));
 AA = [AA altout];
+
 clc;
 end
 timerClass=toc;
@@ -72,16 +67,15 @@ AltModelOutBin = zeros(1,length(AltModelOut));
 AltModelOutBin(find(AltModelOut>=0.5)) = 1;
 AltModelOutBin(find(AltModelOut<0.4999)) = 0;
 
-
 [phi,phiclassic,auc_roc,accuracy,sensitivity,specificity,acc2,ppv,npv,f1,kappa,itr]=correctBinaryOutputs(AltModelOutBin,testing_label);
+
 sNum=length(AltModelOutBin);
 sampPerSec=sNum/timerClass;
 itr=itr*sampPerSec*60;
+
 mean_measures(:,vv)=[phi,phiclassic,auc_roc,accuracy,sensitivity,specificity,acc2,ppv,npv,f1,kappa,itr];
 
-
 end
-
 mean_phi=mean(mean_measures(1,:));
 mean_phiclassic=mean(mean_measures(2,:));
 mean_aucroc=mean(mean_measures(3,:));
