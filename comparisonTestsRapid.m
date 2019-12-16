@@ -40,7 +40,6 @@ xval.lda.pca.mean.f1=mean_f1;
 xval.lda.pca.mean.kappa=mean_kappa; 
 xval.lda.pca.mean.itr=mean_itr; 
 
-
 [mean_measures,mean_phi,mean_phiclassic,mean_aucroc,mean_accuracy,mean_sensitivity,mean_specificity,mean_acc2,mean_ppv,mean_npv,mean_f1,mean_kappa,mean_itr]=lda_aden_mval(subs,features,labels,p);
 
 xval.lda.aden.mean.acc=mean_accuracy; 
@@ -61,7 +60,7 @@ xval.lda.adenz.mean.spec=mean_specificity;
 xval.lda.adenz.mean.f1=mean_f1;  
 xval.lda.adenz.mean.kappa=mean_kappa; 
 xval.lda.adenz.mean.itr=mean_itr; 
-% 
+
 
 % 
 % [mean_measures,mean_phi,mean_phiclassic,mean_aucroc,mean_accuracy,mean_sensitivity,mean_specificity,mean_acc2,mean_ppv,mean_npv,mean_f1,mean_kappa,mean_itr]=ada_aden_mval(subs,features,labels,p);

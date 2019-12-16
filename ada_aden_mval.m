@@ -1,4 +1,4 @@
-function [mean_measures,mean_phi,mean_phiclassic,mean_aucroc,mean_accuracy,mean_sensitivity,mean_specificity,mean_acc2,mean_ppv,mean_npv,mean_f1,mean_kappa,mean_itr]=lda_aden_mval(subs,features,labels,pvalue)
+function [mean_measures,mean_phi,mean_phiclassic,mean_aucroc,mean_accuracy,mean_sensitivity,mean_specificity,mean_acc2,mean_ppv,mean_npv,mean_f1,mean_kappa,mean_itr]=ada_aden_mval(subs,features,labels,pvalue)
 
 %--------------------------------------------------------------------------
  % LDA_ADEN_MVAL

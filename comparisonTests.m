@@ -86,6 +86,17 @@ xval.adaboost.adenz.mean.f1=mean_f1;
 xval.adaboost.adenz.mean.kappa=mean_kappa; 
 xval.adaboost.adenz.mean.itr=mean_itr; 
 
+[mean_measures,mean_phi,mean_phiclassic,mean_aucroc,mean_accuracy,mean_sensitivity,mean_specificity,mean_acc2,mean_ppv,mean_npv,mean_f1,mean_kappa,mean_itr]=ada_pca_mval(subs,features,labels,p);
+
+xval.adaboost.pca.adenz.mean.acc=mean_accuracy; 
+xval.adaboost.pca.adenz.mean.sens=mean_sensitivity; 
+xval.adaboost.pca.adenz.mean.ppv=mean_ppv; 
+xval.adaboost.pca.adenz.mean.phi=mean_phi;  
+xval.adaboost.pca.adenz.mean.spec=mean_specificity; 
+xval.adaboost.pca.adenz.mean.f1=mean_f1;  
+xval.adaboost.pca.adenz.mean.kappa=mean_kappa; 
+xval.adaboost.pca.adenz.mean.itr=mean_itr; 
+
 
 
 [mean_measures,mean_phi,mean_phiclassic,mean_aucroc,mean_accuracy,mean_sensitivity,mean_specificity,mean_acc2,mean_ppv,mean_npv,mean_f1,mean_kappa]=svm_aden_mval(subs,features,labels,p);
@@ -109,6 +120,15 @@ xval.svm.adenz.mean.spec=mean_specificity;
 xval.svm.adenz.mean.f1=mean_f1;  
 xval.svm.adenz.mean.kappa=mean_kappa; 
 
+[mean_measures,mean_phi,mean_phiclassic,mean_aucroc,mean_accuracy,mean_sensitivity,mean_specificity,mean_acc2,mean_ppv,mean_npv,mean_f1,mean_kappa]=svm_pca_mval(subs,features,labels,p);
+
+xval.svm.pca.mean.acc=mean_accuracy; 
+xval.svm.pca.mean.sens=mean_sensitivity; 
+xval.svm.pca.mean.ppv=mean_ppv; 
+xval.svm.pca.mean.phi=mean_phi;  
+xval.svm.pca.mean.spec=mean_specificity; 
+xval.svm.pca.mean.f1=mean_f1;  
+xval.svm.pca.mean.kappa=mean_kappa; 
 
 
 [mean_measures,mean_phi,mean_phiclassic,mean_aucroc,mean_accuracy,mean_sensitivity,mean_specificity,mean_acc2,mean_ppv,mean_npv,mean_f1,mean_kappa]=svmp_aden_mval(subs,features,labels,p);
@@ -132,6 +152,15 @@ xval.svmp.adenz.mean.spec=mean_specificity;
 xval.svmp.adenz.mean.f1=mean_f1;  
 xval.svmp.adenz.mean.kappa=mean_kappa; 
 
+[mean_measures,mean_phi,mean_phiclassic,mean_aucroc,mean_accuracy,mean_sensitivity,mean_specificity,mean_acc2,mean_ppv,mean_npv,mean_f1,mean_kappa]=svmp_pca_mval(subs,features,labels,p);
+
+xval.svmp.pca.mean.acc=mean_accuracy; 
+xval.svmp.pca.mean.sens=mean_sensitivity; 
+xval.svmp.pca.mean.ppv=mean_ppv; 
+xval.svmp.pca.mean.phi=mean_phi;  
+xval.svmp.pca.mean.spec=mean_specificity; 
+xval.svmp.pca.mean.f1=mean_f1;  
+xval.svmp.pca.mean.kappa=mean_kappa; 
 
 end
 

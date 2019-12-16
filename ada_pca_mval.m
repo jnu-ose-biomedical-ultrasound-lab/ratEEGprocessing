@@ -1,4 +1,4 @@
-function [mean_measures,mean_phi,mean_phiclassic,mean_aucroc,mean_accuracy,mean_sensitivity,mean_specificity,mean_acc2,mean_ppv,mean_npv,mean_f1,mean_kappa,mean_itr]=ada_adenz_mval(subs,features,labels,pvalue)
+function [mean_measures,mean_phi,mean_phiclassic,mean_aucroc,mean_accuracy,mean_sensitivity,mean_specificity,mean_acc2,mean_ppv,mean_npv,mean_f1,mean_kappa,mean_itr]=ada_pca_mval(subs,features,labels,pvalue)
 
 %--------------------------------------------------------------------------
  % LDA_ADENZ_MVAL
@@ -53,10 +53,10 @@ tic;
 for uu=1:num_subs;
 trainingdata=squeeze(features{train_sub(uu)});
 traininglabel=labels{train_sub(uu)}';
-[w_mad,a_mad,trainp,testp]=feature_selection_adenz(trainingdata,traininglabel',testing_data,pvalue);
+[pcs,newf,var_exp,newf2,tot_var_explained,N2]=feature_selection_pca_alt(trainingdata',testing_data',pvalue);
+reduced_features=newf2;
+mod_test=N2;
 
-reduced_features=trainp;
-mod_test=testp;
 dispstr=sprintf('Running validation subject %s through model %s', num2str(vv), num2str(train_sub(uu)));
         disp(dispstr);
 traininglabel=traininglabel';

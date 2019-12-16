@@ -323,133 +323,225 @@ p=1;
 xval=comparisonTestsRapid(features,labels,subs,p,fs);
 bestAcc1=max([xval.lda.pca.mean.acc,xval.lda.aden.mean.acc,xval.lda.adenz.mean.acc]);
 bestF11=max([xval.lda.pca.mean.f1,xval.lda.aden.mean.f1,xval.lda.adenz.mean.f1]);
+sxval1=xval;
 
 xval=comparisonTestsRapid(featuresB,labelsB,subs,p,fs);
 bbestAcc1=max([xval.lda.pca.mean.acc,xval.lda.aden.mean.acc,xval.lda.adenz.mean.acc]);
 bbestF11=max([xval.lda.pca.mean.f1,xval.lda.aden.mean.f1,xval.lda.adenz.mean.f1]);
+bxval1=xval;
 
 xval=comparisonTestsRapid(featuresT,labelsT,subs,p,fs);
 tbestAcc1=max([xval.lda.pca.mean.acc,xval.lda.aden.mean.acc,xval.lda.adenz.mean.acc]);
 tbestF11=max([xval.lda.pca.mean.f1,xval.lda.aden.mean.f1,xval.lda.adenz.mean.f1]);
+txval1=xval;
 
 p=10;
 xval=comparisonTestsRapid(features,labels,subs,p,fs);
 bestAcc10=max([xval.lda.pca.mean.acc,xval.lda.aden.mean.acc,xval.lda.adenz.mean.acc]);
 bestF110=max([xval.lda.pca.mean.f1,xval.lda.aden.mean.f1,xval.lda.adenz.mean.f1]);
+sxval10=xval;
 
 xval=comparisonTestsRapid(featuresB,labelsB,subs,p,fs);
 bbestAcc10=max([xval.lda.pca.mean.acc,xval.lda.aden.mean.acc,xval.lda.adenz.mean.acc]);
 bbestF110=max([xval.lda.pca.mean.f1,xval.lda.aden.mean.f1,xval.lda.adenz.mean.f1]);
+bxval10=xval;
 
 xval=comparisonTestsRapid(featuresT,labelsT,subs,p,fs);
 tbestAcc10=max([xval.lda.pca.mean.acc,xval.lda.aden.mean.acc,xval.lda.adenz.mean.acc]);
 tbestF110=max([xval.lda.pca.mean.f1,xval.lda.aden.mean.f1,xval.lda.adenz.mean.f1]);
+txval10=xval;
 
 p=20;
 xval=comparisonTestsRapid(features,labels,subs,p,fs);
 bestAcc20=max([xval.lda.pca.mean.acc,xval.lda.aden.mean.acc,xval.lda.adenz.mean.acc]);
 bestF120=max([xval.lda.pca.mean.f1,xval.lda.aden.mean.f1,xval.lda.adenz.mean.f1]);
+sxval20=xval;
 
 xval=comparisonTestsRapid(featuresB,labelsB,subs,p,fs);
 bbestAcc20=max([xval.lda.pca.mean.acc,xval.lda.aden.mean.acc,xval.lda.adenz.mean.acc]);
 bbestF120=max([xval.lda.pca.mean.f1,xval.lda.aden.mean.f1,xval.lda.adenz.mean.f1]);
+bxval20=xval;
 
 xval=comparisonTestsRapid(featuresT,labelsT,subs,p,fs);
 tbestAcc20=max([xval.lda.pca.mean.acc,xval.lda.aden.mean.acc,xval.lda.adenz.mean.acc]);
 tbestF120=max([xval.lda.pca.mean.f1,xval.lda.aden.mean.f1,xval.lda.adenz.mean.f1]);
-
+txval20=xval;
 
 p=30;
 xval=comparisonTestsRapid(features,labels,subs,p,fs);
 bestAcc30=max([xval.lda.pca.mean.acc,xval.lda.aden.mean.acc,xval.lda.adenz.mean.acc]);
 bestF130=max([xval.lda.pca.mean.f1,xval.lda.aden.mean.f1,xval.lda.adenz.mean.f1]);
+sxval30=xval;
 
 xval=comparisonTestsRapid(featuresB,labelsB,subs,p,fs);
 bbestAcc30=max([xval.lda.pca.mean.acc,xval.lda.aden.mean.acc,xval.lda.adenz.mean.acc]);
 bbestF130=max([xval.lda.pca.mean.f1,xval.lda.aden.mean.f1,xval.lda.adenz.mean.f1]);
+bxval30=xval;
 
 xval=comparisonTestsRapid(featuresT,labelsT,subs,p,fs);
 tbestAcc30=max([xval.lda.pca.mean.acc,xval.lda.aden.mean.acc,xval.lda.adenz.mean.acc]);
 tbestF130=max([xval.lda.pca.mean.f1,xval.lda.aden.mean.f1,xval.lda.adenz.mean.f1]);
+txval30=xval;
 
 p=34;
 xval=comparisonTestsRapid(features,labels,subs,p,fs);
 bestAcc34=max([xval.lda.pca.mean.acc,xval.lda.aden.mean.acc,xval.lda.adenz.mean.acc]);
 bestF134=max([xval.lda.pca.mean.f1,xval.lda.aden.mean.f1,xval.lda.adenz.mean.f1]);
+sxval34=xval;
 
 xval=comparisonTestsRapid(featuresB,labelsB,subs,p,fs);
 bbestAcc34=max([xval.lda.pca.mean.acc,xval.lda.aden.mean.acc,xval.lda.adenz.mean.acc]);
 bbestF134=max([xval.lda.pca.mean.f1,xval.lda.aden.mean.f1,xval.lda.adenz.mean.f1]);
+bxval34=xval;
 
 xval=comparisonTestsRapid(featuresT,labelsT,subs,p,fs);
 tbestAcc34=max([xval.lda.pca.mean.acc,xval.lda.aden.mean.acc,xval.lda.adenz.mean.acc]);
 tbestF134=max([xval.lda.pca.mean.f1,xval.lda.aden.mean.f1,xval.lda.adenz.mean.f1]);
+txval34=xval;
 
 % thorough
 
 % rapid
+totalResults=[];
+
 p=1;
 xval=comparisonTests(features,labels,subs,p,fs);
 bestAcc1=max([xval.lda.pca.mean.acc,xval.lda.aden.mean.acc,xval.lda.adenz.mean.acc]);
 bestF11=max([xval.lda.pca.mean.f1,xval.lda.aden.mean.f1,xval.lda.adenz.mean.f1]);
+bestAdaAcc1=max([xval.adaboost.aden.mean.acc,xval.adaboost.adenz.mean.acc,xval.adaboost.pca.mean.acc]);
+bestAdaF11=max([xval.adaboost.aden.mean.f1,xval.adaboost.adenz.mean.f1,xval.adaboost.pca.mean.f1]);
+bestAccSvm1=max([xval.svm.aden.mean.acc,xval.svm.adenz.mean.acc,xval.svmp.aden.mean.acc,xval.svmp.adenz.mean.acc,xval.svmp.pca.mean.acc,xval.svmp.pca.mean.acc]);
+bestF1Svm1=max([xval.svm.aden.mean.f1,xval.svm.adenz.mean.f1,xval.svmp.aden.mean.f1,xval.svmp.adenz.mean.f1,xval.svmp.pca.mean.f1,xval.svmp.pca.mean.f1]);
+totalResults.one.standard=xval;
 
 xval=comparisonTests(featuresB,labelsB,subs,p,fs);
 bbestAcc1=max([xval.lda.pca.mean.acc,xval.lda.aden.mean.acc,xval.lda.adenz.mean.acc]);
 bbestF11=max([xval.lda.pca.mean.f1,xval.lda.aden.mean.f1,xval.lda.adenz.mean.f1]);
+bbestAdaAcc1=max([xval.adaboost.aden.mean.acc,xval.adaboost.adenz.mean.acc,xval.adaboost.pca.mean.acc]);
+bbestAdaF11=max([xval.adaboost.aden.mean.f1,xval.adaboost.adenz.mean.f1,xval.adaboost.pca.mean.f1]);
+bbestAccSvm1=max([xval.svm.aden.mean.acc,xval.svm.adenz.mean.acc,xval.svmp.aden.mean.acc,xval.svmp.adenz.mean.acc,xval.svmp.pca.mean.acc,xval.svmp.pca.mean.acc]);
+bbestF1Svm1=max([xval.svm.aden.mean.f1,xval.svm.adenz.mean.f1,xval.svmp.aden.mean.f1,xval.svmp.adenz.mean.f1,xval.svmp.pca.mean.f1,xval.svmp.pca.mean.f1]);
+totalResults.one.balanced=xval;
 
 xval=comparisonTests(featuresT,labelsT,subs,p,fs);
 tbestAcc1=max([xval.lda.pca.mean.acc,xval.lda.aden.mean.acc,xval.lda.adenz.mean.acc]);
 tbestF11=max([xval.lda.pca.mean.f1,xval.lda.aden.mean.f1,xval.lda.adenz.mean.f1]);
+tbestAdaAcc1=max([xval.adaboost.aden.mean.acc,xval.adaboost.adenz.mean.acc,xval.adaboost.pca.mean.acc]);
+tbestAdaF11=max([xval.adaboost.aden.mean.f1,xval.adaboost.adenz.mean.f1,xval.adaboost.pca.mean.f1]);
+tbestAccSvm1=max([xval.svm.aden.mean.acc,xval.svm.adenz.mean.acc,xval.svmp.aden.mean.acc,xval.svmp.adenz.mean.acc,xval.svmp.pca.mean.acc,xval.svmp.pca.mean.acc]);
+tbestF1Svm1=max([xval.svm.aden.mean.f1,xval.svm.adenz.mean.f1,xval.svmp.aden.mean.f1,xval.svmp.adenz.mean.f1,xval.svmp.pca.mean.f1,xval.svmp.pca.mean.f1]);
+totalResults.one.truncated=xval;
 
 p=10;
 xval=comparisonTests(features,labels,subs,p,fs);
 bestAcc10=max([xval.lda.pca.mean.acc,xval.lda.aden.mean.acc,xval.lda.adenz.mean.acc]);
 bestF110=max([xval.lda.pca.mean.f1,xval.lda.aden.mean.f1,xval.lda.adenz.mean.f1]);
+bestAdaAcc10=max([xval.adaboost.aden.mean.acc,xval.adaboost.adenz.mean.acc,xval.adaboost.pca.mean.acc]);
+bestAdaF110=max([xval.adaboost.aden.mean.f1,xval.adaboost.adenz.mean.f1,xval.adaboost.pca.mean.f1]);
+bestAccSvm10=max([xval.svm.aden.mean.acc,xval.svm.adenz.mean.acc,xval.svmp.aden.mean.acc,xval.svmp.adenz.mean.acc,xval.svmp.pca.mean.acc,xval.svmp.pca.mean.acc]);
+bestF1Svm10=max([xval.svm.aden.mean.f1,xval.svm.adenz.mean.f1,xval.svmp.aden.mean.f1,xval.svmp.adenz.mean.f1,xval.svmp.pca.mean.f1,xval.svmp.pca.mean.f1]);
+totalResults.ten.standard=xval;
 
 xval=comparisonTests(featuresB,labelsB,subs,p,fs);
 bbestAcc10=max([xval.lda.pca.mean.acc,xval.lda.aden.mean.acc,xval.lda.adenz.mean.acc]);
 bbestF110=max([xval.lda.pca.mean.f1,xval.lda.aden.mean.f1,xval.lda.adenz.mean.f1]);
+bbestAdaAcc10=max([xval.adaboost.aden.mean.acc,xval.adaboost.adenz.mean.acc,xval.adaboost.pca.mean.acc]);
+bbestAdaF110=max([xval.adaboost.aden.mean.f1,xval.adaboost.adenz.mean.f1,xval.adaboost.pca.mean.f1]);
+bbestAccSvm10=max([xval.svm.aden.mean.acc,xval.svm.adenz.mean.acc,xval.svmp.aden.mean.acc,xval.svmp.adenz.mean.acc,xval.svmp.pca.mean.acc,xval.svmp.pca.mean.acc]);
+bbestF1Svm10=max([xval.svm.aden.mean.f1,xval.svm.adenz.mean.f1,xval.svmp.aden.mean.f1,xval.svmp.adenz.mean.f1,xval.svmp.pca.mean.f1,xval.svmp.pca.mean.f1]);
+totalResults.ten.balanced=xval;
 
 xval=comparisonTests(featuresT,labelsT,subs,p,fs);
 tbestAcc10=max([xval.lda.pca.mean.acc,xval.lda.aden.mean.acc,xval.lda.adenz.mean.acc]);
 tbestF110=max([xval.lda.pca.mean.f1,xval.lda.aden.mean.f1,xval.lda.adenz.mean.f1]);
+tbestAdaAcc10=max([xval.adaboost.aden.mean.acc,xval.adaboost.adenz.mean.acc,xval.adaboost.pca.mean.acc]);
+tbestAdaF110=max([xval.adaboost.aden.mean.f1,xval.adaboost.adenz.mean.f1,xval.adaboost.pca.mean.f1]);
+tbestAccSvm10=max([xval.svm.aden.mean.acc,xval.svm.adenz.mean.acc,xval.svmp.aden.mean.acc,xval.svmp.adenz.mean.acc,xval.svmp.pca.mean.acc,xval.svmp.pca.mean.acc]);
+tbestF1Svm10=max([xval.svm.aden.mean.f1,xval.svm.adenz.mean.f1,xval.svmp.aden.mean.f1,xval.svmp.adenz.mean.f1,xval.svmp.pca.mean.f1,xval.svmp.pca.mean.f1]);
+totalResults.ten.truncated=xval;
 
 p=20;
 xval=comparisonTests(features,labels,subs,p,fs);
 bestAcc20=max([xval.lda.pca.mean.acc,xval.lda.aden.mean.acc,xval.lda.adenz.mean.acc]);
 bestF120=max([xval.lda.pca.mean.f1,xval.lda.aden.mean.f1,xval.lda.adenz.mean.f1]);
+bestAdaAcc20=max([xval.adaboost.aden.mean.acc,xval.adaboost.adenz.mean.acc,xval.adaboost.pca.mean.acc]);
+bestAdaF120=max([xval.adaboost.aden.mean.f1,xval.adaboost.adenz.mean.f1,xval.adaboost.pca.mean.f1]);
+bestAccSvm20=max([xval.svm.aden.mean.acc,xval.svm.adenz.mean.acc,xval.svmp.aden.mean.acc,xval.svmp.adenz.mean.acc,xval.svmp.pca.mean.acc,xval.svmp.pca.mean.acc]);
+bestF1Svm20=max([xval.svm.aden.mean.f1,xval.svm.adenz.mean.f1,xval.svmp.aden.mean.f1,xval.svmp.adenz.mean.f1,xval.svmp.pca.mean.f1,xval.svmp.pca.mean.f1]);
+totalResults.twenty.standard=xval;
 
 xval=comparisonTests(featuresB,labelsB,subs,p,fs);
 bbestAcc20=max([xval.lda.pca.mean.acc,xval.lda.aden.mean.acc,xval.lda.adenz.mean.acc]);
 bbestF120=max([xval.lda.pca.mean.f1,xval.lda.aden.mean.f1,xval.lda.adenz.mean.f1]);
+bbestAdaAcc20=max([xval.adaboost.aden.mean.acc,xval.adaboost.adenz.mean.acc,xval.adaboost.pca.mean.acc]);
+bbestAdaF120=max([xval.adaboost.aden.mean.f1,xval.adaboost.adenz.mean.f1,xval.adaboost.pca.mean.f1]);
+bbestAccSvm20=max([xval.svm.aden.mean.acc,xval.svm.adenz.mean.acc,xval.svmp.aden.mean.acc,xval.svmp.adenz.mean.acc,xval.svmp.pca.mean.acc,xval.svmp.pca.mean.acc]);
+bbestF1Svm20=max([xval.svm.aden.mean.f1,xval.svm.adenz.mean.f1,xval.svmp.aden.mean.f1,xval.svmp.adenz.mean.f1,xval.svmp.pca.mean.f1,xval.svmp.pca.mean.f1]);
+totalResults.twenty.balanced=xval;
 
 xval=comparisonTests(featuresT,labelsT,subs,p,fs);
 tbestAcc20=max([xval.lda.pca.mean.acc,xval.lda.aden.mean.acc,xval.lda.adenz.mean.acc]);
 tbestF120=max([xval.lda.pca.mean.f1,xval.lda.aden.mean.f1,xval.lda.adenz.mean.f1]);
-
+tbestAdaAcc20=max([xval.adaboost.aden.mean.acc,xval.adaboost.adenz.mean.acc,xval.adaboost.pca.mean.acc]);
+tbestAdaF120=max([xval.adaboost.aden.mean.f1,xval.adaboost.adenz.mean.f1,xval.adaboost.pca.mean.f1]);
+tbestAccSvm20=max([xval.svm.aden.mean.acc,xval.svm.adenz.mean.acc,xval.svmp.aden.mean.acc,xval.svmp.adenz.mean.acc,xval.svmp.pca.mean.acc,xval.svmp.pca.mean.acc]);
+tbestF1Svm20=max([xval.svm.aden.mean.f1,xval.svm.adenz.mean.f1,xval.svmp.aden.mean.f1,xval.svmp.adenz.mean.f1,xval.svmp.pca.mean.f1,xval.svmp.pca.mean.f1]);
+totalResults.twenty.truncated=xval;
 
 p=30;
 xval=comparisonTests(features,labels,subs,p,fs);
 bestAcc30=max([xval.lda.pca.mean.acc,xval.lda.aden.mean.acc,xval.lda.adenz.mean.acc]);
 bestF130=max([xval.lda.pca.mean.f1,xval.lda.aden.mean.f1,xval.lda.adenz.mean.f1]);
+bestAdaAcc30=max([xval.adaboost.aden.mean.acc,xval.adaboost.adenz.mean.acc,xval.adaboost.pca.mean.acc]);
+bestAdaF130=max([xval.adaboost.aden.mean.f1,xval.adaboost.adenz.mean.f1,xval.adaboost.pca.mean.f1]);
+bestAccSvm30=max([xval.svm.aden.mean.acc,xval.svm.adenz.mean.acc,xval.svmp.aden.mean.acc,xval.svmp.adenz.mean.acc,xval.svmp.pca.mean.acc,xval.svmp.pca.mean.acc]);
+bestF1Svm30=max([xval.svm.aden.mean.f1,xval.svm.adenz.mean.f1,xval.svmp.aden.mean.f1,xval.svmp.adenz.mean.f1,xval.svmp.pca.mean.f1,xval.svmp.pca.mean.f1]);
+totalResults.thirty.standard=xval;
 
-xval=comparisonTestsfeaturesB,labelsB,subs,p,fs);
+xval=comparisonTests(featuresB,labelsB,subs,p,fs);
 bbestAcc30=max([xval.lda.pca.mean.acc,xval.lda.aden.mean.acc,xval.lda.adenz.mean.acc]);
 bbestF130=max([xval.lda.pca.mean.f1,xval.lda.aden.mean.f1,xval.lda.adenz.mean.f1]);
+bbestAdaAcc30=max([xval.adaboost.aden.mean.acc,xval.adaboost.adenz.mean.acc,xval.adaboost.pca.mean.acc]);
+bbestAdaF130=max([xval.adaboost.aden.mean.f1,xval.adaboost.adenz.mean.f1,xval.adaboost.pca.mean.f1]);
+bbestAccSvm30=max([xval.svm.aden.mean.acc,xval.svm.adenz.mean.acc,xval.svmp.aden.mean.acc,xval.svmp.adenz.mean.acc,xval.svmp.pca.mean.acc,xval.svmp.pca.mean.acc]);
+bbestF1Svm30=max([xval.svm.aden.mean.f1,xval.svm.adenz.mean.f1,xval.svmp.aden.mean.f1,xval.svmp.adenz.mean.f1,xval.svmp.pca.mean.f1,xval.svmp.pca.mean.f1]);
+totalResults.thirty.balanced=xval;
 
 xval=comparisonTests(featuresT,labelsT,subs,p,fs);
 tbestAcc30=max([xval.lda.pca.mean.acc,xval.lda.aden.mean.acc,xval.lda.adenz.mean.acc]);
 tbestF130=max([xval.lda.pca.mean.f1,xval.lda.aden.mean.f1,xval.lda.adenz.mean.f1]);
+tbestAdaAcc30=max([xval.adaboost.aden.mean.acc,xval.adaboost.adenz.mean.acc,xval.adaboost.pca.mean.acc]);
+tbestAdaF130=max([xval.adaboost.aden.mean.f1,xval.adaboost.adenz.mean.f1,xval.adaboost.pca.mean.f1]);
+tbestAccSvm30=max([xval.svm.aden.mean.acc,xval.svm.adenz.mean.acc,xval.svmp.aden.mean.acc,xval.svmp.adenz.mean.acc,xval.svmp.pca.mean.acc,xval.svmp.pca.mean.acc]);
+tbestF1Svm30=max([xval.svm.aden.mean.f1,xval.svm.adenz.mean.f1,xval.svmp.aden.mean.f1,xval.svmp.adenz.mean.f1,xval.svmp.pca.mean.f1,xval.svmp.pca.mean.f1]);
+totalResults.thirty.truncated=xval;
 
 p=34;
 xval=comparisonTests(features,labels,subs,p,fs);
 bestAcc34=max([xval.lda.pca.mean.acc,xval.lda.aden.mean.acc,xval.lda.adenz.mean.acc]);
 bestF134=max([xval.lda.pca.mean.f1,xval.lda.aden.mean.f1,xval.lda.adenz.mean.f1]);
+bestAdaAcc34=max([xval.adaboost.aden.mean.acc,xval.adaboost.adenz.mean.acc,xval.adaboost.pca.mean.acc]);
+bestAdaF134=max([xval.adaboost.aden.mean.f1,xval.adaboost.adenz.mean.f1,xval.adaboost.pca.mean.f1]);
+bestAccSvm34=max([xval.svm.aden.mean.acc,xval.svm.adenz.mean.acc,xval.svmp.aden.mean.acc,xval.svmp.adenz.mean.acc,xval.svmp.pca.mean.acc,xval.svmp.pca.mean.acc]);
+bestF1Svm34=max([xval.svm.aden.mean.f1,xval.svm.adenz.mean.f1,xval.svmp.aden.mean.f1,xval.svmp.adenz.mean.f1,xval.svmp.pca.mean.f1,xval.svmp.pca.mean.f1]);
+totalResults.thirtyfour.standard=xval;
 
 xval=comparisonTests(featuresB,labelsB,subs,p,fs);
 bbestAcc34=max([xval.lda.pca.mean.acc,xval.lda.aden.mean.acc,xval.lda.adenz.mean.acc]);
 bbestF134=max([xval.lda.pca.mean.f1,xval.lda.aden.mean.f1,xval.lda.adenz.mean.f1]);
+bbestAdaAcc34=max([xval.adaboost.aden.mean.acc,xval.adaboost.adenz.mean.acc,xval.adaboost.pca.mean.acc]);
+bbestAdaF134=max([xval.adaboost.aden.mean.f1,xval.adaboost.adenz.mean.f1,xval.adaboost.pca.mean.f1]);
+bbestAccSvm34=max([xval.svm.aden.mean.acc,xval.svm.adenz.mean.acc,xval.svmp.aden.mean.acc,xval.svmp.adenz.mean.acc,xval.svmp.pca.mean.acc,xval.svmp.pca.mean.acc]);
+bbestF1Svm34=max([xval.svm.aden.mean.f1,xval.svm.adenz.mean.f1,xval.svmp.aden.mean.f1,xval.svmp.adenz.mean.f1,xval.svmp.pca.mean.f1,xval.svmp.pca.mean.f1]);
+totalResults.thirtyfour.balanced=xval;
 
 xval=comparisonTests(featuresT,labelsT,subs,p,fs);
 tbestAcc34=max([xval.lda.pca.mean.acc,xval.lda.aden.mean.acc,xval.lda.adenz.mean.acc]);
 tbestF134=max([xval.lda.pca.mean.f1,xval.lda.aden.mean.f1,xval.lda.adenz.mean.f1]);
+tbestAdaAcc34=max([xval.adaboost.aden.mean.acc,xval.adaboost.adenz.mean.acc,xval.adaboost.pca.mean.acc]);
+tbestAdaF134=max([xval.adaboost.aden.mean.f1,xval.adaboost.adenz.mean.f1,xval.adaboost.pca.mean.f1]);
+tbestAccSvm34=max([xval.svm.aden.mean.acc,xval.svm.adenz.mean.acc,xval.svmp.aden.mean.acc,xval.svmp.adenz.mean.acc,xval.svmp.pca.mean.acc,xval.svmp.pca.mean.acc]);
+tbestF1Svm34=max([xval.svm.aden.mean.f1,xval.svm.adenz.mean.f1,xval.svmp.aden.mean.f1,xval.svmp.adenz.mean.f1,xval.svmp.pca.mean.f1,xval.svmp.pca.mean.f1]);
+totalResults.thirtyfour.truncated=xval;
+
+save('totalResults.mat','totalResults');
