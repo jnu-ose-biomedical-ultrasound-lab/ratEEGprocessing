@@ -157,16 +157,59 @@ filteredPowers2A=abs(pwelch(s2A,[],[],fScale,fs));
 fs2A=10*log10(filteredPowers2A);
 filteredPowers2B=abs(pwelch(s2B,[],[],fScale,fs)); 
 fs2B=10*log10(filteredPowers2B);
+
+
+%% rat 3
+% sess 1
+r1=load('OpenBCI-RAW-2019-12-31_16-58-06.txt');
+er1=r1(:,2:(chanNum+1));
+er1=er1-mean(er1);
+filteredEr1=filter(Hd,er1);
+
+rangR=abs(max(filteredEr1)-min(filteredEr1));
+bestChans=find(rangR==min(rangR));
+%figure; plot(er1(1:(10*fs),:)); figure; plot(filteredEr1(1:(10*fs),:));
+%filteredEr1B1=filteredEr1(:,1:round(chanNum/2));
+%filteredEr1B2=filteredEr1(:,(round(chanNum/2)+1):chanNum);
+%bfilteredEr1=abs(filteredEr1B1-filteredEr1B2);
+%filteredEr1=mean(bfilteredEr1,2);
+filteredEr1=filteredEr1(:,bestChans);
+
+% sess 2
+r2=load('OpenBCI-RAW-2019-12-31_17-59-39.txt');
+er2=r2(:,2:(chanNum+1));
+er2=er2-mean(er2);
+
+filteredEr2=filter(Hd,er2);
+%filteredEr2B1=filteredEr2(:,1:round(chanNum/2));
+%filteredEr2B2=filteredEr2(:,(round(chanNum/2)+1):chanNum);
+%bfilteredEr2=abs(filteredEr2B1-filteredEr2B2);
+%filteredEr2=mean(bfilteredEr2,2);
+filteredEr2=filteredEr2(:,bestChans);
+%figure; plot(er2(1:(10*fs),:)); figure; plot(filteredEr2(1:(10*fs),:));
+
+s3A=filteredEr1;
+s3B=filteredEr2;
+
+[paS3]=bandpowerPW(s3A,fs);
+[pbS3]=bandpowerPW(s3B,fs);
+
+filteredPowers3A=abs(pwelch(s3A,[],[],fScale,fs)); 
+fs3A=10*log10(filteredPowers3A);
+filteredPowers3B=abs(pwelch(s3B,[],[],fScale,fs)); 
+fs3B=10*log10(filteredPowers3B);
+
+
 %% combine data
-fA=[filteredPowers1A filteredPowers2A];
-fB=[filteredPowers1B filteredPowers2B];
+fA=[filteredPowers1A filteredPowers2A filteredPowers3A];
+fB=[filteredPowers1B filteredPowers2B filteredPowers3B];
 
 [h1,p1,ci1,stats1] = ttest2(filteredPowers1A,filteredPowers1B);
 [h2,p2,ci2,stats2] = ttest2(filteredPowers2A,filteredPowers2B);
 [h,p,ci,stats] = ttest2(fA,fB);
 
-fA1=[fs1A fs2A];
-fB1=[fs1B fs2B];
+fA1=[fs1A fs2A fs3A];
+fB1=[fs1B fs2B fs3B];
 
 [h1,p1,ci1,stats1] = ttest2(fs1A,fs1B);
 [h2,p2,ci2,stats2] = ttest2(fs2A,fs2B);
@@ -174,10 +217,11 @@ fB1=[fs1B fs2B];
 
 [h1,p1,ci1,stats1] = ttest2(paS1,pbS1);
 [h2,p2,ci2,stats2] = ttest2(paS2,pbS2);
+[h2,p2,ci2,stats2] = ttest2(paS3,pbS3);
 %[h,p,ci,stats] = ttest2([paS1; paS2; pbS1; pbS2]);
 close all;
 
-y=[paS1 paS2 pbS1 pbS2];
+y=[paS1 paS2 paS3 pbS1 pbS2 pbS3];
 [p,tbl] = anova1(y)
 
 %% plot figure
@@ -265,54 +309,78 @@ features2=features2(newOrder,:);
 labels2=labels2(newOrder);
 
 lim2=min([size(features2a,1),size(features2b,1)]);
-
-
-
-
 newOrder=randperm(lim2);
 f2ba=features2a(newOrder,:);
 f2bb=features2b(newOrder,:);
 %featuresB2=[f2ba; f2bb];
-
 featuresB2=[f2ba f2bb];
 featuresB2=reshape(featuresB2,[(2*lim2) , size(features2b,2)]);
-
-
 labelsB2=[zeros(1,size(f2ba,1)) ones(1,size(f2bb,1))];
 featuresB2=featuresB2(newOrder,:);
 labelsB2=labelsB2(newOrder);
 [featuresB2,labelsB2]=balanceClasses(features2a,features2b);
 [featuresT2,labelsT2]=truncateClasses(features2a,features2b);
 
+
+% rat 3
+[features3a]=featureWindowedPW(s3A,fs,overlap);
+[features3b]=featureWindowedPW(s3B,fs,overlap);
+features3=[features3a; features3b];
+labels3=[zeros(1,size(features3a,1)) ones(1,size(features3b,1))];
+
+newOrder=randperm(size(features3,1));
+features3=features3(newOrder,:);
+labels3=labels3(newOrder);
+
+lim3=min([size(features3a,1),size(features3b,1)]);
+newOrder=randperm(lim3);
+f3ba=features3a(newOrder,:);
+f3bb=features3b(newOrder,:);
+%featuresB2=[f2ba; f2bb];
+featuresB3=[f3ba f3bb];
+featuresB3=reshape(featuresB3,[(2*lim3) , size(features3b,2)]);
+labelsB3=[zeros(1,size(f3ba,1)) ones(1,size(f3bb,1))];
+featuresB3=featuresB3(newOrder,:);
+labelsB3=labelsB3(newOrder);
+[featuresB3,labelsB3]=balanceClasses(features3a,features3b);
+[featuresT3,labelsT3]=truncateClasses(features3a,features3b);
+
+
 % combine them
-subs=2;
+subs=3;
 
 % standard
 features=[];
 labels=[];
 features{1}=features1;
 features{2}=features2;
+features{3}=features3;
 
 labels{1}=labels1;
 labels{2}=labels2;
+labels{3}=labels3;
 
 % balanced
 featuresB=[];
 labelsB=[];
 featuresB{1}=featuresB1;
 featuresB{2}=featuresB2;
+featuresB{3}=featuresB3;
 
 labelsB{1}=labelsB1;
 labelsB{2}=labelsB2;
+labelsB{3}=labelsB3;
 
 % truncate
 featuresT=[];
 labelsT=[];
 featuresT{1}=featuresT1;
 featuresT{2}=featuresT2;
+featuresT{3}=featuresT3;
 
 labelsT{1}=labelsT1;
 labelsT{2}=labelsT2;
+labelsT{3}=labelsT3;
 
 close all;
 
@@ -413,7 +481,7 @@ xval=comparisonTests(features,labels,subs,p,fs);
 %bestAccSvm1=max([xval.svm.aden.mean.acc,xval.svm.adenz.mean.acc,xval.svmp.aden.mean.acc,xval.svmp.adenz.mean.acc,xval.svmp.pca.mean.acc,xval.svmp.pca.mean.acc]);
 %bestF1Svm1=max([xval.svm.aden.mean.f1,xval.svm.adenz.mean.f1,xval.svmp.aden.mean.f1,xval.svmp.adenz.mean.f1,xval.svmp.pca.mean.f1,xval.svmp.pca.mean.f1]);
 totalResults.one.standard=xval;
-
+save('ratResults.mat','totalResults');
 xval=comparisonTests(featuresB,labelsB,subs,p,fs);
 % 
 % bbestAcc1=max([xval.lda.pca.mean.acc,xval.lda.aden.mean.acc,xval.lda.adenz.mean.acc]);
@@ -424,7 +492,7 @@ xval=comparisonTests(featuresB,labelsB,subs,p,fs);
 % bbestF1Svm1=max([xval.svm.aden.mean.f1,xval.svm.adenz.mean.f1,xval.svmp.aden.mean.f1,xval.svmp.adenz.mean.f1,xval.svmp.pca.mean.f1,xval.svmp.pca.mean.f1]);
 
 totalResults.one.balanced=xval;
-
+save('ratResults.mat','totalResults');
 xval=comparisonTests(featuresT,labelsT,subs,p,fs);
 % 
 % tbestAcc1=max([xval.lda.pca.mean.acc,xval.lda.aden.mean.acc,xval.lda.adenz.mean.acc]);
@@ -435,7 +503,7 @@ xval=comparisonTests(featuresT,labelsT,subs,p,fs);
 % tbestF1Svm1=max([xval.svm.aden.mean.f1,xval.svm.adenz.mean.f1,xval.svmp.aden.mean.f1,xval.svmp.adenz.mean.f1,xval.svmp.pca.mean.f1,xval.svmp.pca.mean.f1]);
 
 totalResults.one.truncated=xval;
-
+save('ratResults.mat','totalResults');
 p=10;
 xval=comparisonTests(features,labels,subs,p,fs);
 % 
@@ -447,7 +515,7 @@ xval=comparisonTests(features,labels,subs,p,fs);
 % bestF1Svm10=max([xval.svm.aden.mean.f1,xval.svm.adenz.mean.f1,xval.svmp.aden.mean.f1,xval.svmp.adenz.mean.f1,xval.svmp.pca.mean.f1,xval.svmp.pca.mean.f1]);
 
 totalResults.ten.standard=xval;
-
+save('ratResults.mat','totalResults');
 xval=comparisonTests(featuresB,labelsB,subs,p,fs);
 % 
 % bbestAcc10=max([xval.lda.pca.mean.acc,xval.lda.aden.mean.acc,xval.lda.adenz.mean.acc]);
@@ -458,7 +526,7 @@ xval=comparisonTests(featuresB,labelsB,subs,p,fs);
 % bbestF1Svm10=max([xval.svm.aden.mean.f1,xval.svm.adenz.mean.f1,xval.svmp.aden.mean.f1,xval.svmp.adenz.mean.f1,xval.svmp.pca.mean.f1,xval.svmp.pca.mean.f1]);
 
 totalResults.ten.balanced=xval;
-
+save('ratResults.mat','totalResults');
 xval=comparisonTests(featuresT,labelsT,subs,p,fs);
 % 
 % tbestAcc10=max([xval.lda.pca.mean.acc,xval.lda.aden.mean.acc,xval.lda.adenz.mean.acc]);
@@ -469,7 +537,7 @@ xval=comparisonTests(featuresT,labelsT,subs,p,fs);
 % tbestF1Svm10=max([xval.svm.aden.mean.f1,xval.svm.adenz.mean.f1,xval.svmp.aden.mean.f1,xval.svmp.adenz.mean.f1,xval.svmp.pca.mean.f1,xval.svmp.pca.mean.f1]);
 
 totalResults.ten.truncated=xval;
-
+save('ratResults.mat','totalResults');
 p=20;
 xval=comparisonTests(features,labels,subs,p,fs);
 % 
@@ -481,7 +549,7 @@ xval=comparisonTests(features,labels,subs,p,fs);
 % bestF1Svm20=max([xval.svm.aden.mean.f1,xval.svm.adenz.mean.f1,xval.svmp.aden.mean.f1,xval.svmp.adenz.mean.f1,xval.svmp.pca.mean.f1,xval.svmp.pca.mean.f1]);
 
 totalResults.twenty.standard=xval;
-
+save('ratResults.mat','totalResults');
 xval=comparisonTests(featuresB,labelsB,subs,p,fs);
 % 
 % bbestAcc20=max([xval.lda.pca.mean.acc,xval.lda.aden.mean.acc,xval.lda.adenz.mean.acc]);
@@ -492,7 +560,7 @@ xval=comparisonTests(featuresB,labelsB,subs,p,fs);
 % bbestF1Svm20=max([xval.svm.aden.mean.f1,xval.svm.adenz.mean.f1,xval.svmp.aden.mean.f1,xval.svmp.adenz.mean.f1,xval.svmp.pca.mean.f1,xval.svmp.pca.mean.f1]);
 
 totalResults.twenty.balanced=xval;
-
+save('ratResults.mat','totalResults');
 xval=comparisonTests(featuresT,labelsT,subs,p,fs);
 % 
 % tbestAcc20=max([xval.lda.pca.mean.acc,xval.lda.aden.mean.acc,xval.lda.adenz.mean.acc]);
@@ -503,7 +571,7 @@ xval=comparisonTests(featuresT,labelsT,subs,p,fs);
 % tbestF1Svm20=max([xval.svm.aden.mean.f1,xval.svm.adenz.mean.f1,xval.svmp.aden.mean.f1,xval.svmp.adenz.mean.f1,xval.svmp.pca.mean.f1,xval.svmp.pca.mean.f1]);
 
 totalResults.twenty.truncated=xval;
-
+save('ratResults.mat','totalResults');
 p=30;
 xval=comparisonTests(features,labels,subs,p,fs);
 % 
@@ -515,7 +583,7 @@ xval=comparisonTests(features,labels,subs,p,fs);
 % bestF1Svm30=max([xval.svm.aden.mean.f1,xval.svm.adenz.mean.f1,xval.svmp.aden.mean.f1,xval.svmp.adenz.mean.f1,xval.svmp.pca.mean.f1,xval.svmp.pca.mean.f1]);
 
 totalResults.thirty.standard=xval;
-
+save('ratResults.mat','totalResults');
 xval=comparisonTests(featuresB,labelsB,subs,p,fs);
 % 
 % bbestAcc30=max([xval.lda.pca.mean.acc,xval.lda.aden.mean.acc,xval.lda.adenz.mean.acc]);
@@ -526,7 +594,7 @@ xval=comparisonTests(featuresB,labelsB,subs,p,fs);
 % bbestF1Svm30=max([xval.svm.aden.mean.f1,xval.svm.adenz.mean.f1,xval.svmp.aden.mean.f1,xval.svmp.adenz.mean.f1,xval.svmp.pca.mean.f1,xval.svmp.pca.mean.f1]);
 
 totalResults.thirty.balanced=xval;
-
+save('ratResults.mat','totalResults');
 xval=comparisonTests(featuresT,labelsT,subs,p,fs);
 % 
 % tbestAcc30=max([xval.lda.pca.mean.acc,xval.lda.aden.mean.acc,xval.lda.adenz.mean.acc]);
@@ -537,7 +605,7 @@ xval=comparisonTests(featuresT,labelsT,subs,p,fs);
 % tbestF1Svm30=max([xval.svm.aden.mean.f1,xval.svm.adenz.mean.f1,xval.svmp.aden.mean.f1,xval.svmp.adenz.mean.f1,xval.svmp.pca.mean.f1,xval.svmp.pca.mean.f1]);
 
 totalResults.thirty.truncated=xval;
-
+save('ratResults.mat','totalResults');
 p=34;
 xval=comparisonTests(features,labels,subs,p,fs);
 % 
@@ -549,7 +617,7 @@ xval=comparisonTests(features,labels,subs,p,fs);
 % bestF1Svm34=max([xval.svm.aden.mean.f1,xval.svm.adenz.mean.f1,xval.svmp.aden.mean.f1,xval.svmp.adenz.mean.f1,xval.svmp.pca.mean.f1,xval.svmp.pca.mean.f1]);
 
 totalResults.thirtyfour.standard=xval;
-
+save('ratResults.mat','totalResults');
 xval=comparisonTests(featuresB,labelsB,subs,p,fs);
 % 
 % bbestAcc34=max([xval.lda.pca.mean.acc,xval.lda.aden.mean.acc,xval.lda.adenz.mean.acc]);
@@ -560,6 +628,7 @@ xval=comparisonTests(featuresB,labelsB,subs,p,fs);
 % bbestF1Svm34=max([xval.svm.aden.mean.f1,xval.svm.adenz.mean.f1,xval.svmp.aden.mean.f1,xval.svmp.adenz.mean.f1,xval.svmp.pca.mean.f1,xval.svmp.pca.mean.f1]);
 
 totalResults.thirtyfour.balanced=xval;
+save('ratResults.mat','totalResults');
 
 xval=comparisonTests(featuresT,labelsT,subs,p,fs);
 % tbestAcc34=max([xval.lda.pca.mean.acc,xval.lda.aden.mean.acc,xval.lda.adenz.mean.acc]);
@@ -570,4 +639,5 @@ xval=comparisonTests(featuresT,labelsT,subs,p,fs);
 % tbestF1Svm34=max([xval.svm.aden.mean.f1,xval.svm.adenz.mean.f1,xval.svmp.aden.mean.f1,xval.svmp.adenz.mean.f1,xval.svmp.pca.mean.f1,xval.svmp.pca.mean.f1]);
 totalResults.thirtyfour.truncated=xval;
 
-save('totalResults.mat','totalResults');
+save('ratResults.mat','totalResults');
+
